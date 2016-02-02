@@ -13,8 +13,8 @@
         <slf4j.version>1.7.12</slf4j.version>
         <logback.version>1.1.3</logback.version>
         <hadoop.version>2.7.1</hadoop.version>
-        <hadoop.scope>provided</hadoop.scope>
         <hive.version>1.0.0</hive.version>
+        <hive.scope>compile</hive.scope>
     </properties>
 
     <dependencies>
@@ -23,12 +23,14 @@
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-serde</artifactId>
             <version>${hive.version}</version>
+            <scope>${hive.scope}</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-exec</artifactId>
             <version>${hive.version}</version>
+            <scope>${hive.scope}</scope>
         </dependency>
 
 
@@ -50,46 +52,17 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-common</artifactId>
-            <version>${hadoop.version}</version>
-            <scope>${hadoop.scope}</scope>
+            <groupId>net.sf.uadetector</groupId>
+            <artifactId>uadetector-core</artifactId>
+            <version>0.9.22</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-client</artifactId>
-            <version>${hadoop.version}</version>
-            <scope>${hadoop.scope}</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-mapreduce-client-core</artifactId>
-            <version>${hadoop.version}</version>
-            <scope>${hadoop.scope}</scope>
 
-        </dependency>
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-mapreduce-client-shuffle</artifactId>
-            <version>${hadoop.version}</version>
-            <scope>${hadoop.scope}</scope>
+            <groupId>net.sf.uadetector</groupId>
+            <artifactId>uadetector-resources</artifactId>
+            <version>2014.10</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-mapreduce-client-jobclient</artifactId>
-            <version>${hadoop.version}</version>
-            <scope>${hadoop.scope}</scope>
 
-        </dependency>
-        <dependency>
-            <groupId>org.apache.mrunit</groupId>
-            <artifactId>mrunit</artifactId>
-            <version>1.1.0</version>
-            <classifier>hadoop2</classifier>
-
-            <scope>test</scope>
-
-        </dependency>
 
     </dependencies>
 
@@ -120,6 +93,7 @@
                                     <artifact>*:*</artifact>
                                     <excludes>
                                         <exclude>META-INF/license/*</exclude>
+                                        <exclude>META-INF/*</exclude>
                                         <exclude>META-INF/LICENSE</exclude>
                                         <exclude>META-INF/LICENSE.txt</exclude>
                                         <exclude>license/*</exclude>
@@ -130,12 +104,12 @@
                                     </excludes>
                                 </filter>
                             </filters>
-                            <transformers>
+ <!--                           <transformers>
 
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>HadoopTraining4</mainClass>
                                 </transformer>
-                            </transformers>
+                            </transformer->-->
                         </configuration>
                     </execution>
                 </executions>
