@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.sf.uadetector.ReadableUserAgent;
+/*import net.sf.uadetector.ReadableUserAgent;
+import net.sf.uadetector.UserAgent;
 import net.sf.uadetector.UserAgentStringParser;
-import net.sf.uadetector.service.UADetectorServiceFactory;
+import net.sf.uadetector.service.UADetectorServiceFactory;*/
+import eu.bitwalker.useragentutils.UserAgent;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
@@ -40,14 +42,22 @@ public class UserAgentUDTF extends GenericUDTF{
         if (inputValue == null || inputValue.isEmpty()) {
             return result;
         }
+        /*
         // Get an UserAgentStringParser and analyze the requesting client
         UserAgentStringParser parser = UADetectorServiceFactory.getOnlineUpdatingParser();
-        ReadableUserAgent agent = parser.parse("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0");
+        ReadableUserAgent agent = parser.parse(inputValue);
         result.add(new Object[] {
                 agent.getType().getName(),
                 agent.getName(),
                 agent.getOperatingSystem().getName(),
                 agent.getDeviceCategory().getName() } );
+                */
+        UserAgent userAgent = UserAgent.parseUserAgentString(inputValue);
+        result.add(new Object[] {
+                userAgent.getBrowser().getBrowserType().getName(),
+                userAgent.getBrowser().getGroup().getName(),
+                userAgent.getOperatingSystem().getName(),
+                userAgent.getOperatingSystem().getDeviceType().getName() } );
         return result;
     }
 

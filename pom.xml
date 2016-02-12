@@ -62,7 +62,11 @@
             <artifactId>uadetector-resources</artifactId>
             <version>2014.10</version>
         </dependency>
-
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>1.19</version>
+        </dependency>
 
     </dependencies>
 
